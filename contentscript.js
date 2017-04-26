@@ -3,6 +3,7 @@ canChangeUrl = document.getElementsByClassName("course__sidebar-full-details").l
 
 // if we're not already on single page view and can be in it transition, change url
 if (canChangeUrl &&
+              //don't try to go to single page if already in single page view
               !window.location.href.includes('/print') &&
               //don't override subject when user has clicked specifics
               !window.location.href.includes('/eligibility-and-requirements') &&
@@ -21,7 +22,6 @@ if (canChangeUrl &&
               !window.location.href.includes('/further-study') &&
               !window.location.href.includes('/notes'))
 {
-  //don't override subject specifics
   newUrl = window.location.href + "/print";
   window.location.replace(newUrl);
 }
