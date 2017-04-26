@@ -1,6 +1,6 @@
 {
-  "name": "Unimelb Handy Handbook Viewer",
-  "description": "Applies single page format to subject and course pages on the handbook",
+  "name": "Handy Handbook Viewer (University of Melbourne)",
+  "description": "Applies single page format to pages on the University of Melbourne handbook when avaliable",
   "version": "1.0",
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
