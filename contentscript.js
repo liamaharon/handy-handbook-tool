@@ -1,8 +1,8 @@
 // checks if element to view page is in html
-shouldChangeUrl = document.getElementsByClassName("course__sidebar-full-details").length > 0;
+canChangeUrl = document.getElementsByClassName("course__sidebar-full-details").length > 0;
 
 // if we're not already on single page view and can be in it transition, change url
-if (shouldChangeUrl &&
+if (canChangeUrl &&
               !window.location.href.includes('/print') &&
               //don't override subject when user has clicked specifics
               !window.location.href.includes('/eligibility-and-requirements') &&
