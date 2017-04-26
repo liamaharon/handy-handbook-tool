@@ -1,2 +1,2 @@
-# unimelb-handy-handbook
-Applies single page format to subject and course pages on the University of Melbourne handbook
+# Handy Handbook Viewer
+Google Chrome extension which automatically applies single page format to pages on the University of Melbourne handbook when available
