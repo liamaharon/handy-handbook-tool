@@ -1,7 +1,7 @@
 {
   "name": "Handy Handbook Viewer",
   "description": "Automatically applies single page format to pages on the University of Melbourne handbook when available",
-  "version": "1.0",
+  "version": "1.0.1",
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
           "128": "icon128.png" },
