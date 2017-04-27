@@ -1,5 +1,5 @@
 const curUrl = window.location.href;
-const shouldChangeUrl =
+const applySinglePage =
       // checks if page can be viewed in single page
       document.getElementsByClassName("course__sidebar-full-details").length > 0 &&
       // check if we're already on single page view
@@ -21,8 +21,19 @@ const shouldChangeUrl =
       !curUrl.includes('/further-study') &&
       !curUrl.includes('/notes');
 
-// if we're not already on single page view and can be in it transition, change url
-if (shouldChangeUrl) {
+// apply single page view
+if (applySinglePage) {
   const newUrl = curUrl + "/print";
-  window.location.replace(newUrl);
+  // get html from single page view page
+  $.get(newUrl, function(singlePageHtml, status){
+    // parse
+    const singlePageElements = $(singlePageHtml);
+    // get part we want
+    const singlePageCourse = $('.course', singlePageElements);
+    // replace course with single page course
+    $('.course').empty();
+    $('.course').append(singlePageCourse);
+    // remove stupid sidebar
+    $('.layout-sidebar__side').remove();
+  })
 }
