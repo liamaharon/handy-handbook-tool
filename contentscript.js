@@ -1,5 +1,6 @@
-
-const curUrl = window.location.href;
+// remove # anchor from url we're looking at so we get the single page content
+// from right place
+const curUrl = window.location.href.split('#')[0];
 const applySinglePage =
       // checks if page can be viewed in single page
       document.getElementsByClassName("course__sidebar-full-details").length > 0 &&
@@ -34,8 +35,9 @@ if (applySinglePage) {
     // replace course with single page course
     $('.course').empty();
     $('.course').append(singlePageCourse);
-    // remove single page link
-    $('.course__sidebar-full-details').remove();
+    // empty content to go to single page view but IMPORTANT that we leave the
+    // class so page knows it's special on reload
+    $('.course__sidebar-full-details').empty();
     // remove stupid sidebar
     // $('.layout-sidebar__side__inner').remove();
 
