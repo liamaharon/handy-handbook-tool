@@ -6,46 +6,65 @@ if (doChanges(curUrl)) {
   const newUrl = curUrl + "/print";
   // get html from single page view page
   $.get(newUrl, function(singlePageHtml, status){
-    // parse
-    const singlePageElements = $(singlePageHtml);
-    // get part we want
-    const singlePageCourse = $('.course', singlePageElements);
-    // replace course with single page course
-    $('.course').empty();
-    $('.course').append(singlePageCourse);
-    // empty content to go to single page view but IMPORTANT that we leave the
-    // class so page knows it's special on reload
-    $('.course__sidebar-full-details').empty();
+    replaceContent(singlePageHtml);
+    setupSidebar();
+    setupAccordions();
+  })
+}
 
-    $('.layout-sidebar__side__inner a').each(function(){
-      text = this.innerHTML;
-      if (text.includes('Timetable')) {
-        $(this).text('Timetable (open in new tab)');
-      }
-      // special case as dates in content is spelt with '&' instead of 'and'.
-      // also allow for link from 'refer to specific study period'
-      else if (text.includes('Dates') || text.includes('period')) {
-        foundin = $(`h2:contains("Dates & times")`);
-        $(foundin[0]).attr('id', "Dates & times");
-        console.log(foundin[0]);
-        $(this).attr('href', `#Dates & times`);
-      }
-      // don't pickup on timetable
-      else {
-        foundin = $(`h2:contains("${text}")`);
-        $(foundin[0]).attr('id', text);
-        console.log(foundin[0]);
-        $(this).attr('href', `#${text}`);
-      }
-    })
-    // make accordians work
-    $('.accordion li').each(function(){
-      $(this).click(function() {
-        $(this).toggleClass('accordion__visible');
-      })
+// replace content we don't want with single page view content
+/***********************************************/
+function replaceContent(singlePageHtml) {
+  // parse
+  const singlePageElements = $(singlePageHtml);
+  // get part we want
+  const singlePageCourse = $('.course', singlePageElements);
+  // replace course with single page course
+  $('.course').empty();
+  $('.course').append(singlePageCourse);
+  // empty content to go to single page view but IMPORTANT that we leave the
+  // class so page knows it's special on reload
+  $('.course__sidebar-full-details').empty();
+}
+/***********************************************/
+
+// setup sidebar links to scroll to point in page
+/***********************************************/
+function setupSidebar() {
+  $('.layout-sidebar__side__inner a').each(function(){
+    text = this.innerHTML;
+    if (text.includes('Timetable')) {
+      $(this).text('Timetable (open in new tab)');
+    }
+    // special case as dates in content is spelt with '&' instead of 'and'.
+    // also allow for link from 'refer to specific study period'
+    else if (text.includes('Dates') || text.includes('period')) {
+      foundin = $(`h2:contains("Dates & times")`);
+      $(foundin[0]).attr('id', "Dates & times");
+      console.log(foundin[0]);
+      $(this).attr('href', `#Dates & times`);
+    }
+    // don't pickup on timetable
+    else {
+      foundin = $(`h2:contains("${text}")`);
+      $(foundin[0]).attr('id', text);
+      console.log(foundin[0]);
+      $(this).attr('href', `#${text}`);
+    }
+  })
+}
+/***********************************************/
+
+// change accordians class on click so they expand and collapse
+/***********************************************/
+function setupAccordions() {
+  $('.accordion li').each(function(){
+    $(this).click(function() {
+      $(this).toggleClass('accordion__visible');
     })
   })
 }
+/***********************************************/
 
 // checks if we're on page that we can should change
 /***********************************************/
