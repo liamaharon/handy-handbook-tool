@@ -16,20 +16,19 @@ if (doChanges(curUrl)) {
     // empty content to go to single page view but IMPORTANT that we leave the
     // class so page knows it's special on reload
     $('.course__sidebar-full-details').empty();
-    // remove stupid sidebar
-    // $('.layout-sidebar__side__inner').remove();
 
     $('.layout-sidebar__side__inner a').each(function(){
       text = this.innerHTML;
       if (text.includes('Timetable')) {
         $(this).text('Timetable (open in new tab)');
       }
-      // special case as dates in content is spelt with '&' instead of 'and'
-      else if (text.includes('Dates')) {
+      // special case as dates in content is spelt with '&' instead of 'and'.
+      // also allow for link from 'refer to specific study period'
+      else if (text.includes('Dates') || text.includes('period')) {
         foundin = $(`h2:contains("Dates & times")`);
-        $(foundin[0]).attr('id', text);
+        $(foundin[0]).attr('id', "Dates & times");
         console.log(foundin[0]);
-        $(this).attr('href', `#${text}`);
+        $(this).attr('href', `#Dates & times`);
       }
       // don't pickup on timetable
       else {
