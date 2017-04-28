@@ -38,11 +38,17 @@ if (doChanges(curUrl)) {
         $(this).attr('href', `#${text}`);
       }
     })
-  });
+    // make accordians work
+    $('.accordion li').each(function(){
+      $(this).click(function() {
+        $(this).toggleClass('accordion__visible');
+      })
+    })
+  })
 }
 
+// checks if we're on page that we can should change
 /***********************************************/
-// checks if we're on page that we can improve
 function doChanges(curUrl) {
 
   // checks if page can be viewed in single page
