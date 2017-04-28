@@ -4,8 +4,9 @@ const curUrl = window.location.href.split('#')[0];
 // apply single page view
 if (doChanges(curUrl)) {
   const newUrl = curUrl + "/print";
-  // get html from single page view page
+  // get html from single page view page, and run main logic
   $.get(newUrl, function(singlePageHtml, status){
+    // main logic
     replaceContent(singlePageHtml);
     setupSidebar();
     setupAccordions();
@@ -22,34 +23,63 @@ function replaceContent(singlePageHtml) {
   // replace course with single page course
   $('.course').empty();
   $('.course').append(singlePageCourse);
-  // empty content to go to single page view but IMPORTANT that we leave the
-  // class so page knows it's special on reload
-  $('.course__sidebar-full-details').empty();
 }
 /***********************************************/
 
 // setup sidebar links to scroll to point in page
 /***********************************************/
 function setupSidebar() {
+  // empty content to go to single page view but IMPORTANT that we leave the
+  // class so page knows it's special on reload
+  $('.course__sidebar-full-details').empty();
+  // minor styling
+  $('.course__sidebar-full-details').css('margin', '0px');
+  $('.course__sidebar-full-details').css('padding', '0px');
+  $('.course__sidebar-navigation').css('padding', '0px');
+  $('.course__sidebar').css('width', '30em');
+
+  $('.course__sidebar-navigation-heading').text('Scroll to');
+  $('.layout-sidebar__side__inner').append('<i><strong>Powered by Handy Handbook Tool</strong></i>');
   $('.layout-sidebar__side__inner a').each(function(){
     text = this.innerHTML;
+    // change timetable text
     if (text.includes('Timetable')) {
       $(this).text('Timetable (open in new tab)');
     }
     // special case as dates in content is spelt with '&' instead of 'and'.
     // also allow for link from 'refer to specific study period'
-    else if (text.includes('Dates') || text.includes('period')) {
+    else if (text.includes('Dates') || text.includes('specific study period')) {
       foundin = $(`h2:contains("Dates & times")`);
-      $(foundin[0]).attr('id', "Dates & times");
-      console.log(foundin[0]);
-      $(this).attr('href', `#Dates & times`);
+      idToUse = "Datestimes";
+      $(foundin[0]).prop('id', idToUse + "_t");
+      $(this).prop('id', idToUse);
+      $(this).removeAttr('href');
+      $(this).click(function() {
+        $("html, body").animate({
+          scrollTop: $(`#${this.id}_t`).offset().top - 40
+        }, 'medium');
+      })
     }
-    // don't pickup on timetable
+    // all other tags we need links to in doc
     else {
       foundin = $(`h2:contains("${text}")`);
-      $(foundin[0]).attr('id', text);
+      // make an id. for some reason for long inputs it breaks the scroll to
+      // class, so make sure it is small here
+      if (text.length < 4) {
+        idToUse = text;
+      } else {
+        idToUse = text.slice(0,5) + text.slice(-1);
+      }
+      // _t for target
+      $(foundin[0]).prop('id', idToUse + '_t');
       console.log(foundin[0]);
-      $(this).attr('href', `#${text}`);
+      $(this).prop('id', idToUse);
+      $(this).removeAttr('href');
+      $(this).click(function() {
+        $("html, body").animate({
+          scrollTop: $(`#${this.id}_t`).offset().top - 40
+        }, 'medium');
+      })
     }
   })
 }
