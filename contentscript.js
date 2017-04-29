@@ -32,14 +32,23 @@ function setupSidebar() {
   // empty content to go to single page view but IMPORTANT that we leave the
   // class so page knows it's special on reload
   $('.course__sidebar-full-details').empty();
+
   // minor styling
+  $('.course__sidebar-navigation-heading').text('Scroll to');
   $('.course__sidebar-full-details').css('margin', '0px');
   $('.course__sidebar-full-details').css('padding', '0px');
   $('.course__sidebar-navigation').css('padding', '0px');
   $('.course__sidebar').css('width', '30em');
+  $('.course__sidebar').css('padding-left', '3.45em');
 
-  $('.course__sidebar-navigation-heading').text('Scroll to');
   $('.layout-sidebar__side__inner').append('<i><strong>Powered by Handy Handbook Tool</strong></i>');
+
+  // setup scroll to top
+  $('.course__sidebar-navigation').prepend('<li id="scrolltop"><a>Top</a></li>');
+  $("#scrolltop").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "medium");
+  });
+
   $('.layout-sidebar__side__inner a').each(function(){
     text = this.innerHTML;
     // change timetable text
