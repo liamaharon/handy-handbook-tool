@@ -41,7 +41,6 @@ function setupSidebar() {
   $('.course__sidebar').css('width', '30em');
   $('.course__sidebar').css('padding-left', '3.45em');
 
-  $('.layout-sidebar__side__inner').append('<i><strong>Powered by Handy Handbook Tool</strong></i>');
 
   // setup scroll to top
   $('.course__sidebar-navigation').prepend('<li id="scrolltop"><a>Top</a></li>');
@@ -49,17 +48,33 @@ function setupSidebar() {
     $("html, body").animate({ scrollTop: 0 }, "medium");
   });
 
+  // setup links on sidebar
   $('.layout-sidebar__side__inner a').each(function(){
     text = this.innerHTML;
+    $(this).css('cursor', 'pointer');
     // change timetable text
     if (text.includes('Timetable')) {
       $(this).text('Timetable (open in new tab)');
     }
-    // special case as dates in content is spelt with '&' instead of 'and'.
-    // also allow for link from 'refer to specific study period'
-    else if (text.includes('Dates') || text.includes('specific study period')) {
+    // special case for "Attributes, outcomes and skills" for courses needs to
+    // go to "LEARNING OUTCOMES"
+    else if (text.includes('Attributes')) {
+      foundin = $(`h2:contains("Learning outcomes")`);
+      idToUse = "Outcomes";
+      $(foundin[0]).prop('id', idToUse + "_t");
+      $(this).prop('id', idToUse);
+      $(this).removeAttr('href');
+      $(this).click(function() {
+        $("html, body").animate({
+          scrollTop: $(`#${this.id}_t`).offset().top - 40
+        }, 'medium');
+      })
+    }
+    // special case for "refer to the specific study period" needs to go to
+    // dates and times
+    else if (text.includes('refer to the specific study period')) {
       foundin = $(`h2:contains("Dates & times")`);
-      idToUse = "Datestimes";
+      idToUse = "Datess";
       $(foundin[0]).prop('id', idToUse + "_t");
       $(this).prop('id', idToUse);
       $(this).removeAttr('href');
@@ -71,7 +86,7 @@ function setupSidebar() {
     }
     // all other tags we need links to in doc
     else {
-      foundin = $(`h2:contains("${text}")`);
+      foundin = $(`h2:contains("${text.split(" ")[0]}")`);
       // make an id. for some reason for long inputs it breaks the scroll to
       // class, so make sure it is small here
       if (text.length < 4) {
@@ -91,6 +106,8 @@ function setupSidebar() {
       })
     }
   })
+  // shameless plug
+  $('.layout-sidebar__side__inner').append('<h3>Powered by <a href="https://chrome.google.com/webstore/detail/handy-handbook-tool/kgjgnfjefohopigifkpplgjcmobgmoch" target="_blank">Handy Handbook Tool</a></h3><p><a href="https://goo.gl/forms/cb2UvWVQTueMsLej2" target="_blank">Report bugs and give feedback (new tab)</a></p>');
 }
 /***********************************************/
 
