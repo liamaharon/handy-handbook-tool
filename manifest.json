@@ -1,8 +1,10 @@
 {
   "name": "Handy Handbook Tool",
   "description": "Improves the user experience of the University of Melbourne handbook",
-  "version": "1.1",
-  "icons": { "128": "icon128.png" },
+  "version": "1.1.1",
+  "icons": { "16": "icon16.png",
+             "48": "icon48.png",
+             "128": "icon128.png" },
   "manifest_version": 2,
   "content_scripts": [
     {
