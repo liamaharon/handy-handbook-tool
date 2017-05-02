@@ -110,8 +110,8 @@ function setupSidebar() {
   if (document.getElementsByClassName("course__sidebar-section--contact") != null) {
     $('.course__sidebar-section--contact').appendTo('.course__overview-wrapper');
     // rename as to not be ambiguous
-    $("#Overvw_t").html("Overview and Contact");
-    $("#Overvw").html("Overview and Contact");
+    $("#Overvw_t").html("Overview and contact");
+    $("#Overvw").html("Overview and contact");
     // give a bit of padding for shameless plug
     $('.course__sidebar-navigation').css('padding-bottom', '10px');
   }
