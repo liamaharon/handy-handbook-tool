@@ -99,14 +99,18 @@ function setupSidebar() {
       console.log(foundin[0]);
       $(this).prop('id', idToUse);
       $(this).removeAttr('href');
+      console.log(this.id);
       $(this).click(function() {
+        this.id === 'Overvw' ? offset = 70 : offset = 50;
+        console.log(this.id, offset)
         $("html, body").animate({
-          scrollTop: $(`#${this.id}_t`).offset().top - 40
+          scrollTop: $(`#${this.id}_t`).offset().top - offset
         }, 'medium');
       })
     }
   })
   // move contact infomation into overview if we're looking at a course
+  console.log(document.getElementsByClassName("course__sidebar-section--contact").length > 0);
   if (document.getElementsByClassName("course__sidebar-section--contact") != null) {
     $('.course__sidebar-section--contact').appendTo('.course__overview-wrapper');
     // rename as to not be ambiguous
