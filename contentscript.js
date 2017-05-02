@@ -106,6 +106,15 @@ function setupSidebar() {
       })
     }
   })
+  // move contact infomation into overview if we're looking at a course
+  if (document.getElementsByClassName("course__sidebar-section--contact") != null) {
+    $('.course__sidebar-section--contact').appendTo('.course__overview-wrapper');
+    // rename as to not be ambiguous
+    $("#Overvw_t").html("Overview and Contact");
+    $("#Overvw").html("Overview and Contact");
+    // give a bit of padding for shameless plug
+    $('.course__sidebar-navigation').css('padding-bottom', '10px');
+  }
   // shameless plug
   $('.layout-sidebar__side__inner').append('<h3>Powered by <a href="https://chrome.google.com/webstore/detail/handy-handbook-tool/kgjgnfjefohopigifkpplgjcmobgmoch" target="_blank">Handy Handbook Tool</a></h3><p><a href="https://goo.gl/forms/cb2UvWVQTueMsLej2" target="_blank">Report bugs and give feedback (new tab)</a></p>');
 }
