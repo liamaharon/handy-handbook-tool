@@ -110,8 +110,7 @@ function setupSidebar() {
     }
   })
   // move contact infomation into overview if we're looking at a course
-  console.log(document.getElementsByClassName("course__sidebar-section--contact").length > 0);
-  if (document.getElementsByClassName("course__sidebar-section--contact") != null) {
+  if (document.getElementsByClassName("course__sidebar-section--contact").length > 0) {
     $('.course__sidebar-section--contact').appendTo('.course__overview-wrapper');
     // rename as to not be ambiguous
     $("#Overvw_t").html("Overview and contact");
