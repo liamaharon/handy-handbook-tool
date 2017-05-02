@@ -96,13 +96,11 @@ function setupSidebar() {
       }
       // _t for target
       $(foundin[0]).prop('id', idToUse + '_t');
-      console.log(foundin[0]);
       $(this).prop('id', idToUse);
       $(this).removeAttr('href');
-      console.log(this.id);
       $(this).click(function() {
+        // overview needs to end scroll a bit higher on the page
         this.id === 'Overvw' ? offset = 70 : offset = 50;
-        console.log(this.id, offset)
         $("html, body").animate({
           scrollTop: $(`#${this.id}_t`).offset().top - offset
         }, 'medium');
