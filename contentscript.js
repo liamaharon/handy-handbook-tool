@@ -3,13 +3,16 @@
 const curUrl = window.location.href.split('#')[0];
 // apply single page view
 if (doChanges(curUrl)) {
+  $.LoadingOverlay("show");
   const newUrl = curUrl + "/print";
+
   // get html from single page view page, and run main logic
   $.get(newUrl, function(singlePageHtml, status){
     // main logic
     replaceContent(singlePageHtml);
     setupSidebar();
     setupAccordions();
+		$.LoadingOverlay("hide");
   })
 }
 
@@ -108,8 +111,9 @@ function setupSidebar() {
     }
   })
   // move contact infomation into overview if we're looking at a course
-  if (document.getElementsByClassName("course__sidebar-section--contact").length > 0) {
+  if (document.getElementsByClassName("course__sidebar-section--contact").length > 0 || document.getElementsByClassName("course__sidebar-section").length > 0) {
     $('.course__sidebar-section--contact').appendTo('.course__overview-wrapper');
+    $('.course__sidebar-section').appendTo('.course__overview-wrapper');
     // rename as to not be ambiguous
     $("#Overvw_t").html("Overview and contact");
     $("#Overvw").html("Overview and contact");
