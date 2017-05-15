@@ -147,7 +147,6 @@ function doChanges(curUrl) {
   !curUrl.includes('/dates-times') &&
   !curUrl.includes('/further-information') &&
   // check if user has clicked major specifics
-  !curUrl.includes('/components') &&
   !curUrl.includes('/course-structure') &&
   !curUrl.includes('/subject-options') &&
   // check if user has clicked course specifics (note there is some crossover with major)
