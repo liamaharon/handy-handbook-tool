@@ -16,7 +16,7 @@
   "content_scripts": [
     {
       "matches": ["http://handbook.unimelb.edu.au/*", "https://handbook.unimelb.edu.au/*"],
-      "js": ["jquery-3.2.1.min.js", "loading-overlay.min.js", "contentscript.js", "window.js"]
+      "js": ["jquery-3.2.1.min.js", "loading-overlay.min.js", "helpers.js", "contentscript.js"]
     }
   ]
 }

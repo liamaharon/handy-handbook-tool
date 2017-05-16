@@ -3,16 +3,16 @@
 const curUrl = window.location.href.split('#')[0];
 // apply single page view
 if (doChanges(curUrl)) {
-  $.LoadingOverlay("show");
-  const newUrl = curUrl + "/print";
+	setupLoadingOverlay();
 
   // get html from single page view page, and run main logic
-  $.get(newUrl, function(singlePageHtml, status){
+	const allInfoUrl = curUrl + "/print";
+  $.get(allInfoUrl, function(singlePageHtml, status){
     // main logic
     replaceContent(singlePageHtml);
     setupSidebar();
     setupAccordions();
-		$.LoadingOverlay("hide");
+		setupAutoScroll();
   })
 }
 
@@ -133,36 +133,5 @@ function setupAccordions() {
       $(this).toggleClass('accordion__visible');
     })
   })
-}
-/***********************************************/
-
-// checks if we're on page that we can should change
-/***********************************************/
-function doChanges(curUrl) {
-
-  // checks if page can be viewed in single page
-  if (
-  document.getElementsByClassName("course__sidebar-full-details").length > 0 &&
-  // check if we're already on single page view
-  !curUrl.includes('/print') &&
-  // check if user has clicked subject specifics
-  !curUrl.includes('/eligibility-and-requirements') &&
-  !curUrl.includes('/assessment') &&
-  !curUrl.includes('/dates-times') &&
-  !curUrl.includes('/further-information') &&
-  // check if user has clicked major specifics
-  !curUrl.includes('/course-structure') &&
-  !curUrl.includes('/subject-options') &&
-  // check if user has clicked course specifics (note there is some crossover with major)
-  !curUrl.includes('/entry-participation-requirements') &&
-  !curUrl.includes('/attributes-outcomes-skills') &&
-  !curUrl.includes('/breadth-requirements') &&
-  !curUrl.includes('/majors-minors-specialisations') &&
-  !curUrl.includes('/further-study') &&
-  !curUrl.includes('/notes')
-  ) {
-      return true
-  }
-  return false
 }
 /***********************************************/
