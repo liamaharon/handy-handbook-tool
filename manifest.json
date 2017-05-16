@@ -1,7 +1,7 @@
 {
   "name": "Handy Handbook Tool",
   "description": "Improves the user experience of the University of Melbourne handbook",
-  "version": "1.2.0.0",
+  "version": "1.2.1",
   "browser_action": {
     "default_icon": {
       "16": "icons/icon16.png",
