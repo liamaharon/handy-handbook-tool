@@ -1,3 +1,10 @@
+// list of 'bad URLs' should not activate HHT on any of these pages
+var badUrlList = ['/print', '/eligibility-and-requirements', '/assessment',
+							'/dates-times', '/further-information', '/course-structure',
+						  '/subject-options', '/entry-participation-requirements',
+						  '/attributes-outcomes-skills', '/breadth-requirements',
+						  '/majors-minors-specialisations', '/further-study', '/notes'];
+
 // makes loading overlay show up when ajax request is running
 /***********************************************/
 function setupLoadingOverlay() {
@@ -9,34 +16,24 @@ function setupLoadingOverlay() {
 	});
 }
 
-// checks if we're on page that we can should change
+// checks if we're on page that we can use HHT with
 /***********************************************/
 function doChanges(curUrl) {
-
   // checks if page can be viewed in single page
-  if (
-  document.getElementsByClassName("course__sidebar-full-details").length > 0 &&
-  // check if we're already on single page view
-  !curUrl.includes('/print') &&
-  // check if user has clicked subject specifics
-  !curUrl.includes('/eligibility-and-requirements') &&
-  !curUrl.includes('/assessment') &&
-  !curUrl.includes('/dates-times') &&
-  !curUrl.includes('/further-information') &&
-  // check if user has clicked major specifics
-  !curUrl.includes('/course-structure') &&
-  !curUrl.includes('/subject-options') &&
-  // check if user has clicked course specifics (note there is some crossover with major)
-  !curUrl.includes('/entry-participation-requirements') &&
-  !curUrl.includes('/attributes-outcomes-skills') &&
-  !curUrl.includes('/breadth-requirements') &&
-  !curUrl.includes('/majors-minors-specialisations') &&
-  !curUrl.includes('/further-study') &&
-  !curUrl.includes('/notes')
-  ) {
-      return true
-  }
-  return false
+  if (document.getElementsByClassName("course__sidebar-full-details").length <= 0) {
+		return false;
+	}
+
+	var count = badUrlList.length
+	// check to see if we're on a page that should not be viewed using HHT
+	for (var i=0; i<count; i++) {
+		if (curUrl.includes(badUrlList[i])) {
+			return false;
+		}
+	}
+
+	// passed all tests - clear to activate HHT!
+  return true;
 }
 
 /***********************************************/
