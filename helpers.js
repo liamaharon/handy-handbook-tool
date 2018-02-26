@@ -1,5 +1,19 @@
 // list of 'bad URLs' should not activate HHT on any of these pages
-var badUrlList = ['/print', '/eligibility-and-requirements', '/assessment', '/dates-times', '/further-information', '/course-structure', '/subject-options', '/entry-participation-requirements', '/attributes-outcomes-skills', '/breadth-requirements', '/majors-minors-specialisations', '/further-study', '/notes'];
+var badUrlList = [
+    '/print',
+    '/eligibility-and-requirements',
+    '/assessment',
+    '/dates-times',
+    '/further-information',
+    '/course-structure',
+    '/subject-options',
+    '/entry-participation-requirements',
+    '/attributes-outcomes-skills',
+    '/breadth-requirements',
+    '/majors-minors-specialisations',
+    '/further-study',
+    '/notes'
+];
 
 // makes loading overlay show up when ajax request is running
 /***********************************************/
