@@ -1,0 +1,26 @@
+{
+  "name": "handy-handbook-tool",
+  "version": "1.2.3",
+  "description": "Google Chrome extension to improve the user experience of the University of Melbourne handbook",
+  "main": "contentscript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamaharon/handy-handbook-tool.git"
+  },
+  "author": "Liam Aharon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liamaharon/handy-handbook-tool/issues"
+  },
+  "homepage": "https://github.com/liamaharon/handy-handbook-tool#readme",
+  "devDependencies": {
+    "ajv": "^6.2.0",
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-es5": "^1.2.0",
+    "eslint-plugin-react": "^7.7.0"
+  }
+}
