@@ -1,5 +1,8 @@
-# Handy Handbook Tool
-Google Chrome extension to improve the user experience of the University of Melbourne handbook
+# Handy Handbook Tool ![Icon](https://github.com/liamaharon/handy-handbook-tool/blob/master/icons/icon32.png) 
+
+Google Chrome extension that improves the user experience of the University of Melbourne handbook
+
+![Handy Handbook Tool](https://github.com/liamaharon/handy-handbook-tool/blob/master/media/1280x800.png)
 
 ## Installation
 
